@@ -1,0 +1,99 @@
+/* Sidebar toggle button styles */
+button[data-drawer-toggle="logo-sidebar"] {
+  position: relative;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+button[data-drawer-toggle="logo-sidebar"]:hover {
+  transform: scale(1.05);
+}
+
+button[data-drawer-toggle="logo-sidebar"]:active {
+  transform: scale(0.95);
+}
+
+/* Hamburger icon animation */
+button[data-drawer-toggle="logo-sidebar"] svg {
+  transition: transform 0.3s ease;
+}
+
+button[data-drawer-toggle="logo-sidebar"]:hover svg {
+  transform: rotate(0deg);
+}
+
+button[data-drawer-toggle="logo-sidebar"].active svg {
+  transform: rotate(90deg);
+}
+
+/* Sidebar styles */
+#logo-sidebar {
+  transition: transform 0.3s ease-in-out;
+  box-shadow: 2px 0 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Mobile: sidebar hidden by default */
+@media (max-width: 639px) {
+  #logo-sidebar {
+    transform: translateX(-100%);
+  }
+  
+  #logo-sidebar.show {
+    transform: translateX(0);
+  }
+}
+
+/* Desktop: sidebar visible by default */
+@media (min-width: 640px) {
+  #logo-sidebar {
+    transform: translateX(0);
+  }
+}
+
+/* Sidebar navigation items hover effect */
+#logo-sidebar ul li a {
+  transition: all 0.2s ease;
+}
+
+#logo-sidebar ul li a:hover {
+  padding-left: 1rem;
+}
+
+/* Active navigation item */
+#logo-sidebar ul li a.active {
+  background-color: var(--bg-neutral-tertiary, #f3f4f6);
+  color: var(--fg-brand, #3b82f6);
+  font-weight: 600;
+}
+
+/* Smooth scrolling for sidebar content */
+#logo-sidebar > div {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(156, 163, 175, 0.3) transparent;
+}
+
+#logo-sidebar > div::-webkit-scrollbar {
+  width: 6px;
+}
+
+#logo-sidebar > div::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+#logo-sidebar > div::-webkit-scrollbar-thumb {
+  background-color: rgba(156, 163, 175, 0.3);
+  border-radius: 3px;
+}
+
+#logo-sidebar > div::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(156, 163, 175, 0.5);
+}
+
+/* Logo hover effect */
+#logo-sidebar a[href=""] img {
+  transition: transform 0.3s ease;
+}
+
+#logo-sidebar a[href=""]:hover img {
+  transform: scale(1.05);
+}

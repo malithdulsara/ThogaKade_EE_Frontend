@@ -1,0 +1,68 @@
+
+<div class="item-page">
+  <div class="page-header">
+    <h1>Item Management</h1>
+    <p class="subtitle">View and manage inventory items</p>
+  </div>
+
+  <!-- Add Item Form -->
+  <div class="add-item-form">
+    <h3 class="form-title">Add New Item</h3>
+    <div class="form-content">
+      <div class="form-grid">
+        <div class="form-field">
+          <label for="itemCode">Item Code <span class="required">*</span></label>
+          <input type="text" id="itemCode" placeholder="Enter item code" [(ngModel)]="itemObj.itemCode"/>
+        </div>
+        
+        <div class="form-field">
+          <label for="description">Description <span class="required">*</span></label>
+          <input type="text" id="description" placeholder="Enter description" [(ngModel)]="itemObj.description"/>
+        </div>
+        
+        <div class="form-field">
+          <label for="unitPrice">Unit Price <span class="required">*</span></label>
+          <input type="number" id="unitPrice" placeholder="0.00" step="0.01" [(ngModel)]="itemObj.unitPrice"/>
+        </div>
+        
+        <div class="form-field">
+          <label for="qtyOnHand">Qty On Hand <span class="required">*</span></label>
+          <input type="number" id="qtyOnHand" placeholder="0" [(ngModel)]="itemObj.qtyOnHand"/>
+        </div>
+      </div>
+      
+      <div class="form-buttons">
+        <button class="btn-clear">Clear</button>
+        <button class="btn-add" (click)="addItem()">Add Item</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="table-container">
+    <div class="table-wrapper">
+      <table class="item-table">
+        <thead>
+          <tr>
+            <th>Item Code</th>
+            <th>Description</th>
+            <th>Unit Price</th>
+            <th>Qty On Hand</th>
+            <th>Total Value</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of itemList">
+            <td><span class="item-code">{{ item.itemCode }}</span></td>
+            <td class="item-description">{{ item.description }}</td>
+            <td class="unit-price">{{ +item.unitPrice | currency:'LKR ':'symbol':'1.2-2' }}</td>
+            <td class="qty-on-hand">{{ item.qtyOnHand }}</td>
+            <td class="total-value">{{ (+item.unitPrice * +item.qtyOnHand) | currency:'LKR ':'symbol':'1.2-2' }}</td>
+          </tr>
+          <tr *ngIf="!itemList || itemList.length === 0" class="no-data-row">
+            <td colspan="5" class="no-data">No items available</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

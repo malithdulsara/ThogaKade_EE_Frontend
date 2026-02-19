@@ -1,0 +1,76 @@
+
+<div class="login-container">
+  <div class="login-card">
+    <!-- Logo and Header -->
+    <div class="login-header">
+      <img src="https://png.pngtree.com/png-clipart/20191121/original/pngtree-shop-icon-simple-style-png-image_5106639.jpg" 
+           alt="Thogakade Logo" 
+           class="login-logo" />
+      <h1 class="login-title">Welcome to Thogakade</h1>
+      <p class="login-subtitle">Sign in to your account</p>
+    </div>
+
+    <!-- Login Form -->
+    <form class="login-form">
+      <div class="form-group">
+        <label for="email" class="form-label">
+          <svg class="label-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24">
+            <path stroke="currentColor" stroke-linecap="round" stroke-width="2" d="M16 12a4 4 0 1 1-8 0 4 4 0 0 1 8 0Zm0 0v1.5a2.5 2.5 0 1 0 5 0V12a9 9 0 1 0-9 9c.5 0 1-.06 1.5-.15"/>
+          </svg>
+          Email Address
+        </label>
+        <input 
+          type="email" 
+          id="email" 
+          class="form-input" 
+          placeholder="Enter your email" 
+          required 
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="password" class="form-label">
+          <svg class="label-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24">
+            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14v3m-3-6V7a3 3 0 1 1 6 0v4m-8 0h10a1 1 0 0 1 1 1v7a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1v-7a1 1 0 0 1 1-1Z"/>
+          </svg>
+          Password
+        </label>
+        <input 
+          type="password" 
+          id="password" 
+          class="form-input" 
+          placeholder="Enter your password" 
+          required 
+        />
+      </div>
+
+      <div class="form-options">
+        <label for="remember" class="remember-label">
+          <input 
+            id="remember" 
+            type="checkbox" 
+            class="form-checkbox" 
+          />
+          <span>Remember me</span>
+        </label>
+        <a href="#" class="forgot-link">Forgot password?</a>
+      </div>
+
+      <button 
+        type="button" 
+        routerLink="/dashboard" 
+        class="submit-button">
+        <svg class="button-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24">
+          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 12H4m12 0-4 4m4-4-4-4m3-4h2a3 3 0 0 1 3 3v10a3 3 0 0 1-3 3h-2"/>
+        </svg>
+        Sign In
+      </button>
+    </form>
+
+    <!-- Footer -->
+    <div class="login-footer">
+      <p>Don't have an account? <a href="#" class="signup-link">Sign up</a></p>
+    </div>
+  </div>
+</div>
+
