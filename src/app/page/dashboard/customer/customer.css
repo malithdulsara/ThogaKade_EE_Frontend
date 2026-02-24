@@ -220,13 +220,9 @@
     padding: 12px 10px;
   }
 
-  .form-row {
-    grid-template-columns: 1fr;
-    gap: 16px;
-  }
-
-  .form-body {
-    padding: 20px;
+  .form-panel {
+    width: 450px;
+    right: -450px;
   }
 }
 
@@ -267,25 +263,17 @@
     font-size: 0.75rem;
   }
 
+  .form-panel {
+    width: 100%;
+    right: -100%;
+  }
+
   .form-row {
     grid-template-columns: 1fr;
-    gap: 16px;
   }
 
   .form-body {
     padding: 20px;
-  }
-
-  .form-header {
-    padding: 18px;
-  }
-
-  .form-header h3 {
-    font-size: 1.3rem;
-  }
-
-  .form-actions {
-    gap: 10px;
   }
 }
 
@@ -308,32 +296,15 @@
   }
 
   .form-header {
-    padding: 15px;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 10px;
-  }
-
-  .form-header h3 {
-    font-size: 1.1rem;
-  }
-
-  .close-btn {
-    align-self: flex-end;
-    margin-top: -30px;
+    padding: 20px;
   }
 
   .form-body {
     padding: 15px;
   }
 
-  .form-row {
-    gap: 12px;
-  }
-
   .form-actions {
     flex-direction: column;
-    gap: 10px;
   }
 }
 
@@ -355,26 +326,26 @@
   background-color: #2980b9;
 }
 
-/* Form Panel - At Top of Table */
+/* Form Panel - Slides in from right */
 .form-panel {
-  background: white;
-  border-radius: 12px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
-  margin-bottom: 30px;
-  max-height: 0;
-  overflow: hidden;
-  opacity: 0;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  animation: slideInDown 0.6s ease;
+  position: fixed;
+  top: 0;
+  right: -500px;
+  width: 500px;
+  height: 100vh;
+  background-color: white;
+  box-shadow: -5px 0 20px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  transition: right 0.4s ease;
+  overflow-y: auto;
 }
 
 .form-toggle-checkbox:checked ~ .form-panel {
-  max-height: 2000px;
-  opacity: 1;
-  margin-bottom: 30px;
+  right: 0;
 }
 
 .form-container {
+  height: 100%;
   display: flex;
   flex-direction: column;
 }
@@ -386,7 +357,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-radius: 12px 12px 0 0;
+  flex-shrink: 0;
 }
 
 .form-header h3 {
@@ -419,17 +390,17 @@
 .form-body {
   padding: 30px;
   flex: 1;
+  overflow-y: auto;
 }
 
 .form-row {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 20px;
-  margin-bottom: 20px;
 }
 
 .form-group {
-  margin-bottom: 0;
+  margin-bottom: 20px;
 }
 
 .form-group label {
@@ -460,7 +431,6 @@
 .form-group select:focus {
   outline: none;
   border-color: #3498db;
-  box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
 }
 
 .form-group select {
@@ -500,7 +470,6 @@
 
 .btn-cancel:hover {
   background-color: #7f8c8d;
-  transform: translateY(-2px);
 }
 
 .btn-save {
@@ -516,6 +485,31 @@
 
 .btn-save:active {
   transform: translateY(0);
+}
+
+/* Overlay effect when form is open */
+.form-toggle-checkbox:checked ~ .page-header,
+.form-toggle-checkbox:checked ~ .table-container {
+  filter: brightness(0.7);
+  pointer-events: none;
+}
+
+/* Form body scrollbar */
+.form-body::-webkit-scrollbar {
+  width: 6px;
+}
+
+.form-body::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+.form-body::-webkit-scrollbar-thumb {
+  background-color: #3498db;
+  border-radius: 10px;
+}
+
+.form-body::-webkit-scrollbar-thumb:hover {
+  background-color: #2980b9;
 }
 .action-cell {
   text-align: center;
@@ -541,4 +535,72 @@
 
 .btn-delete:active {
   transform: scale(0.95);
+}
+
+.btn-edit {
+  background-color: #3498db;
+  color: white;
+  border: none;
+  padding: 6px 14px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  margin-right: 6px;
+}
+
+.btn-edit:hover {
+  background-color: #2980b9;
+  transform: scale(1.05);
+}
+
+.btn-edit:active {
+  transform: scale(0.95);
+}
+
+/* Form buttons for add/update panel */
+.form-actions .btn-update,
+.form-actions .btn-clear {
+  flex: 1;
+  padding: 14px;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-align: center;
+  user-select: none;
+  color: white;
+}
+
+.btn-update {
+  background-color: #3498db;
+  color: white;
+}
+
+.btn-update:hover {
+  background-color: #2980b9;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(52, 152, 219, 0.3);
+}
+
+.btn-update:active {
+  transform: translateY(0);
+}
+
+.btn-clear {
+  background-color: #f39c12;
+  color: white;
+}
+
+.btn-clear:hover {
+  background-color: #d68910;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(243, 156, 18, 0.3);
+}
+
+.btn-clear:active {
+  transform: translateY(0);
 }

@@ -16,3 +16,4 @@ export interface ItemModel{
     unitPrice:Number;
     qtyOnHand:Number;
 }
+

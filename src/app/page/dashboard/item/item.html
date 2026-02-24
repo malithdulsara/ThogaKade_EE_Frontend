@@ -32,8 +32,9 @@
       </div>
       
       <div class="form-buttons">
-        <button class="btn-clear">Clear</button>
-        <button class="btn-add" (click)="addItem()">Add Item</button>
+        <button class="btn-clear" (click)="clearForm()">Clear</button>
+        <button class="btn-add" (click)="addItem()" *ngIf="!isEditMode">Add Item</button>
+        <button class="btn-update" (click)="updateItem()" *ngIf="isEditMode">Update Item</button>
       </div>
     </div>
   </div>
@@ -57,6 +58,10 @@
             <td class="unit-price">{{ +item.unitPrice | currency:'LKR ':'symbol':'1.2-2' }}</td>
             <td class="qty-on-hand">{{ item.qtyOnHand }}</td>
             <td class="total-value">{{ (+item.unitPrice * +item.qtyOnHand) | currency:'LKR ':'symbol':'1.2-2' }}</td>
+            <td class="action-cell">
+              <button class="btn-edit" (click)="selectItem(item)" title="Edit item">✏️</button>
+              <button class="btn-delete" (click)="deleteItem(item.itemCode, item.description)" title="Delete item">🗑️</button>
+            </td>
           </tr>
           <tr *ngIf="!itemList || itemList.length === 0" class="no-data-row">
             <td colspan="5" class="no-data">No items available</td>
